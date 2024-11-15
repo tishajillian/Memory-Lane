@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+
+:root {
+  --primary-color: #68D439;
+  --secondary-color: #D5F2C1;
+  --navbar-bg-color: #ECF8E4;
+  --background-color: #F4FCEF;
+  --accent-color: #6797DE;
+  --text-color: #091204;
+  --font-family: "Montserrat";
+  --font-size: 16px;
+  --border-radius: 5px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat";
+}
+
+/* NAVBAR === */
+.navbar {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 2rem 2rem 2rem;
+  left: 0;
+  top: 0;
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  background-color: var(--navbar-bg-color);
+}
+
+/* .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  background-color: var(--navbar-bg-color);
+  padding: 2rem;
+  z-index: 9999;
+} */
+
+/* .App {
+  display: flex;
+  flex-direction: row;
+} */
+
+.navbar .navbar-logo .logolink img {
+  padding-left: 20px;
+}
+
+.navbar .links{
+  list-style: none;
+}
+
+.navbar .links li {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1rem 1rem 20px;
+  border-radius: 25px;
+  transition: background-color 0.5s ease;
+}
+
+.navbar .links li .navlink{
+  text-decoration: none;
+  color:var(--text-color);
+  transition: var(--background-color) 0.5s ease;
+}
+
+.navbar .links li:hover,
+.navbar .links li.active {
+  background-color: var(--secondary-color);
+  background-size: contain;
+  border-radius: 25px;
+}
+
+.navbar .new-journal-entry {
+  padding-top: 48vh;
+}
+
+.navbar .new-journal-entry .new-journal-link {
+  text-decoration: none;
+  color: black;
+}
+
+.navbar .new-journal-entry .new-journal-button {
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.navbar .new-journal-entry .new-journal-button img {
+  padding-right: 5px;
+}
+
+.navbar .new-journal-entry .new-journal-button a {
+  font-weight: 500;
+}
+/* === NAVBAR */
+
+/* APP === */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pages {
+  margin-left: 300px;
+  flex-grow: 1;
+  height: 100vh;
+  overflow: auto;
+}
+/* === APP */
+
+/* HOME === */
+.home {
+  padding: 2rem;
+  background-color: var(--background-color);
+  height: 100vh;
+  overflow: scroll;
+}
+/* === HOME */
+
+/* JOURNALDETAILS === */
+.journal-preview-container {
+  padding-bottom: 20px;
+}
+.journal-preview-container .journal-previews {
+  background-color: var(--navbar-bg-color);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+
+.journal-preview-container .user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.journal-preview-container .user-info .text-container .text-username {
+  font-weight: 600;
+}
+
+.journal-preview-container .journal-content{
+  padding-top: 5px;
+}
+
+.journal-preview-container .journal-content h4 {
+  padding-bottom: 5px;
+  text-align: center;
+  font-size: 1.1em;
+}
+/* === JOURNALDETAILS */
+
+/* NEWJOURNALENTRY === */
+.new-journal-page {
+  padding: 2rem;
+  background-color: var(--background-color);
+  height: 100vh;
+  overflow: scroll;
+}
+
+.top-container {
+  display: flex;
+  align-items: center;
+  gap: 5vh;
+  padding-bottom: 10px;
+}
+
+.segmented-switch {
+  display: flex;
+  background-color: #f1f1f1;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.switch-button {
+  background-color: var(--navbar-bg-color);
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: "Montserrat";
+  font-size: 15px;
+  font-weight: bold;
+  width: 100px;
+  text-align: center;
+  border: none;
+}
+
+.switch-button:hover {
+  background-color: #ddd;
+}
+
+.switch-button.active {
+  background-color: var(--secondary-color);
+  border: none;
+}
+
+.new-journal-page .title-input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  width: 50%;
+  background-color: var(--background-color);
+  font-family: "Montserrat";
+}
+
+.new-journal-page .upload-btn {
+  padding: 10px;
+  border: none;
+  font-family: "Montserrat";
+  border-radius: 5px;
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.react-quill-container {
+  height: 600px;  /* Set the height of the container */
+}
+
+.ql-editor {
+  min-height: 300px;  /* Set minimum height for the editor area */
+  font-family: "Montserrat";
+}
+/* === NEWJOURNALENTRY */
