@@ -1,8 +1,9 @@
 import React from 'react'
+import defaultProfilePicture from '../images/default-profile-picture.png'
 
 const JournalDetails = ({ journal }) => {
 
-  const defaultProfilePicture = '/images/default-profile-picture.png'
+  // const defaultProfilePicture = '../images/default-profile-picture.png'
 
   return (
 

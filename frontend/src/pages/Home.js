@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useJournalsContext } from '../hooks/useJournalsContext.js';
 
 // components
 import JournalDetails from '../components/JournalPreviews.js'
@@ -7,7 +8,8 @@ const Home = () => {
 
     console.log("Home component rendered");
 
-    const [journals, setJournals] = useState(null)
+    // const [journals, setJournals] = useState(null)
+    const {journals, dispatch} = useJournalsContext()
 
     useEffect(() => {
         const fetchJournals = async () => {
@@ -18,7 +20,8 @@ const Home = () => {
             console.log(json);
 
             if (response.ok) {
-                setJournals(json)
+                // setJournals(json)
+                dispatch({type: 'SET_JOURNALS', payload: json})
             }
         }
 
