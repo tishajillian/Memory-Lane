@@ -18,14 +18,14 @@ app.use((req, res, next) => {
 
 // routes 
 app.use('/api/journals', journalRoutes)
-app.use('/api/users', userRoutes)
+app.use('/api/user', userRoutes)
 
 // db connection
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
     // listen for requests
         app.listen(process.env.PORT, () => {
-        console.log('connected to databse & is listening on port 4000')
+        console.log('connected to database & is listening on port 4000')
         })
     })
     .catch((error) => {
