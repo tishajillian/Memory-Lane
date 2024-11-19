@@ -15,7 +15,7 @@ const MyJournals = () => {
 
     useEffect(() => {
         const fetchJournals = async () => {
-            const response = await fetch('/api/journals', {
+            const response = await fetch('/api/journals/myjournals', {
                 headers: {
                     'Authorization' : `Bearer ${user.token}`
                 }
