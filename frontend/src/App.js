@@ -5,11 +5,14 @@ import Navbar from "./components/Navbar"
 import NewJournalEntry from './pages/NewJournalEntry';
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import MyJournals from './pages/MyJournals';
+import { useAuthContext } from './hooks/useAuthContext';
 
 function App() {
 
   const [onPressed, setOnPressed] = useState("/"); // Default to Home
   const location = useLocation()
+  const { user } = useAuthContext()
 
   const showNavbar = location.pathname != '/login' && location.pathname != '/signup'
 
@@ -21,15 +24,15 @@ function App() {
             <Routes>
             <Route 
               path="/login"
-              element={<Login />}
+              element={!user ? <Login /> : <Navigate to="/home" />}
               />
               <Route 
               path="/signup"
-              element={<Signup />}
+              element={!user ? <Signup /> : <Navigate to="/home" />}
               />
               <Route 
               path="/home"
-              element={<Home />}
+              element={user ? <Home /> : <Navigate to='/login' />}
               />
               <Route 
               path="/"
@@ -37,7 +40,11 @@ function App() {
               />
               <Route 
               path="/newentry"
-              element={<NewJournalEntry onPressed={onPressed} setOnPressed={setOnPressed}/>}
+              element={user ? <NewJournalEntry onPressed={onPressed} setOnPressed={setOnPressed}/> : <Navigate to='/login' />}
+              />
+              <Route 
+              path="/myjournals"
+              element={user ? <MyJournals /> : <Navigate to='/login' />}
               />
               {/* Add other routes here */}
             </Routes>

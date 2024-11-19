@@ -18,6 +18,24 @@ const getAllJournals = async (req, res) => {
     }
 }
 
+const getMyJournals = async (req, res) => {
+    const userId = req.user._id
+
+    try {
+        const journals = await Journal.find({user_id})
+            .sort({ createdAt: -1 })
+            .populate({
+                path: 'userId',
+                select: 'username profilePicture' // Only select the fields needed
+            })         // Populate user details
+            .populate('journalPhotos')     // Populate associated photos
+
+        res.status(200).json(journals)
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+}
+
 const getJournalById = async (req, res) => {
     const { id } = req.params;
 
@@ -42,8 +60,10 @@ const getJournalById = async (req, res) => {
 
 const createJournal = async (req, res) => {
     const { userId, isPublic, title, content, journalPhotos = [] } = req.body; // Set default empty array for journalPhotos
+    // const { isPublic, title, content, journalPhotos = [] } = req.body;
     
     try {
+        const userId = req.user._id
         // Step 1: Save each photo and collect their IDs (if journalPhotos is not empty)
         const photoIds = journalPhotos.length > 0
             ? await Promise.all(journalPhotos.map(async (photoUrl) => {
@@ -58,7 +78,8 @@ const createJournal = async (req, res) => {
             isPublic,
             title,
             content,
-            journalPhotos: photoIds
+            journalPhotos: photoIds,
+            // user_id
         })
         
         // Step 3: Update each JournalPhoto with the journalId if there are photos
@@ -125,6 +146,7 @@ const updateJournal = async (req, res) => {
 
 module.exports = {
     getAllJournals,
+    getMyJournals,
     getJournalById,
     createJournal,
     deleteJournal,
