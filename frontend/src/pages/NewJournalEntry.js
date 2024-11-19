@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { useJournalsContext } from '../hooks/useJournalsContext.js';
 
 const NewJournalEntry = () => {
   const getCurrentDateTime = () => {
     const now = new Date();
     return now.toLocaleString();
   };
+
+  const {dispatch} = useJournalsContext()
 
   const savedTitle = localStorage.getItem('journalTitle') || `Journal Entry for ${getCurrentDateTime()}`;
 
@@ -43,6 +46,7 @@ const NewJournalEntry = () => {
       setContent("")
       setError(null)
       console.log("New Journal Entry Added!", json)
+      dispatch({type: 'CREATE_JOURNAL', payload: json})
     }
 
   }

@@ -2,19 +2,25 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import logo from "../images/logo.svg"
 import plus from "../images/plus-logo.svg"
+import { useLogout } from "../hooks/useLogout"
 
 const Navbar = ({ onPressed, setOnPressed }) => {
 
     const [navbarOpen, setNavbarOpen] = useState(false);
+    const {logout} = useLogout()
 
     const navlinks = [
         { title: "Profile", path: "/profile" },
-        { title: "Home", path: "/" },
+        { title: "Home", path: "/home" },
         { title: "My Journals", path: "/myjournals" },
     ];
 
     const toggleNavbar = () => {
         setNavbarOpen(!navbarOpen);
+    }
+
+    const handleClick = () => {
+        logout()
     }
 
     return (
@@ -46,6 +52,9 @@ const Navbar = ({ onPressed, setOnPressed }) => {
                         <a>New Entry</a>
                     </div>
                 </Link>
+            </div>
+            <div className="logout-button">
+               <button onClick={handleClick}>Log out</button>
             </div>
         </nav>
     );
