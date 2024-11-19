@@ -22,7 +22,7 @@ const getMyJournals = async (req, res) => {
     const userId = req.user._id
 
     try {
-        const journals = await Journal.find({user_id})
+        const journals = await Journal.find({userId})
             .sort({ createdAt: -1 })
             .populate({
                 path: 'userId',
@@ -78,7 +78,7 @@ const createJournal = async (req, res) => {
             isPublic,
             title,
             content,
-            journalPhotos: photoIds,
+            journalPhotos: photoIds
             // user_id
         })
         
