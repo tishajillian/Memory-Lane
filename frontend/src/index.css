@@ -125,7 +125,6 @@ body {
 }
 
 .pages {
-  /* margin-left: 300px; */
   flex-grow: 1;
   height: 100vh;
   overflow: auto;
@@ -134,6 +133,7 @@ body {
 
 /* HOME === */
 .home {
+  margin-left: 300px;
   padding: 2rem;
   background-color: var(--background-color);
   height: 100vh;
@@ -175,6 +175,7 @@ body {
 
 /* NEWJOURNALENTRY === */
 .new-journal-page {
+  margin-left: 300px;
   padding: 2rem;
   background-color: var(--background-color);
   height: 100vh;
@@ -250,6 +251,8 @@ body {
 }
 /* === NEWJOURNALENTRY */
 
+
+/* === auth forms */
 .login {
   display: flex;
   flex-direction: column;

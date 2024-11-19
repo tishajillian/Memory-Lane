@@ -5,9 +5,9 @@ import { useAuthContext } from '../hooks/useAuthContext.js';
 // components
 import JournalDetails from '../components/JournalPreviews.js'
 
-const Home = () => {
+const MyJournals = () => {
 
-    console.log("Home component rendered");
+    console.log("MyJournals component rendered");
 
     // const [journals, setJournals] = useState(null)
     const {journals, dispatch} = useJournalsContext()
@@ -48,4 +48,4 @@ const Home = () => {
 
 }
 
-export default Home;
+export default MyJournals;

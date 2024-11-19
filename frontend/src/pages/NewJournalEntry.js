@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useJournalsContext } from '../hooks/useJournalsContext.js';
+import { useAuthContext } from '../hooks/useAuthContext.js';
 
 const NewJournalEntry = () => {
   const getCurrentDateTime = () => {
@@ -10,6 +11,7 @@ const NewJournalEntry = () => {
   };
 
   const {dispatch} = useJournalsContext()
+  const {user} = useAuthContext()
 
   const savedTitle = localStorage.getItem('journalTitle') || `Journal Entry for ${getCurrentDateTime()}`;
 
@@ -21,6 +23,11 @@ const NewJournalEntry = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
+    if(!user) {
+      setError('You must be logged in')
+      return
+    }
 
     // harusnya userId sesuai current session's user
     const journal = { userId, isPublic, title, content } // harusnya ada journalPhotos
@@ -29,7 +36,8 @@ const NewJournalEntry = () => {
       method: 'POST',
       body: JSON.stringify(journal),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization' : `Bearer ${user.token}`
       }
     })
 
